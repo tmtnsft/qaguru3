@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CodeSampleCheck {
@@ -23,9 +24,10 @@ public class CodeSampleCheck {
         //Перейдите в раздел Wiki проекта
         $("[data-tab-item=i5wiki-tab]").click();
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-        $("#wiki-body").shouldHave(text("Soft assertions"));
+        $(".filter-bar").$(byText("SoftAssertions"));
         //Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
-
-        sleep(5000);
+        $(".wiki-pages-box").$(byText("Show 2 more pages…")).pressEnter()
+                .closest("div").$(byText("SoftAssertions")).click();
+        $(".markdown-body").shouldHave(text("JUnit5")).find(byText("@Test"));
     }
 }
