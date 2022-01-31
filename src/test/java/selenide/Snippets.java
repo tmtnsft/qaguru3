@@ -1,4 +1,4 @@
-package guru.qa3;
+package selenide;
 
 import com.codeborne.selenide.*;
 import org.openqa.selenium.Keys;
